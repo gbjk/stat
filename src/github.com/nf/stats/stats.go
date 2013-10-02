@@ -22,6 +22,7 @@ import (
 	"net/rpc"
 	"sync"
 	"time"
+	"fmt"
 )
 
 var (
@@ -82,5 +83,7 @@ func main() {
 	rpc.HandleHTTP()
 	http.HandleFunc("/", Static)
 	http.Handle("/get", server)
+
+	fmt.Println("Serving up stats on ", *listenAddr)
 	http.ListenAndServe(*listenAddr, nil)
 }
